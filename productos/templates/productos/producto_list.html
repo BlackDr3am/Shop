@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+<h2 class="mb-4">Lista de productos</h2>
+
+<form method="get" class="row mb-4">
+  <div class="col-md-3">
+    <input type="text" name="q" class="form-control" placeholder="Buscar por nombre">
+  </div>
+  <div class="col-md-3">
+    <select name="categoria" class="form-select">
+      <option value="">Todas las categorías</option>
+      {% for cat in categorias %}
+        <option value="{{ cat.id }}">{{ cat.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <input type="number" name="precio_max" class="form-control" placeholder="Precio máximo">
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-outline-primary w-100">Filtrar</button>
+  </div>
+</form>
+
+<div class="row">
+  {% for producto in productos %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion|truncatechars:100 }}</p>
+          <p class="text-muted"><strong>${{ producto.precio }}</strong></p>
+          <a href="{% url 'carrito_agregar' producto.id %}" class="btn btn-success">Agregar al carrito</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

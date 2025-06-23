@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Compra finalizada{% endblock %}
+{% block content %}
+<div class="alert alert-success">
+  <h4 class="alert-heading">¡Gracias por tu compra!</h4>
+  <p>Tu pedido ha sido procesado correctamente.</p>
+</div>
+<a href="{% url 'productos:lista' %}" class="btn btn-outline-primary">Volver a productos</a>
+{% endblock %}

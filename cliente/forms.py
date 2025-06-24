@@ -1,9 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
+from django import forms
+from productos.models import Usuario  # O desde donde esté tu modelo personalizado
 
-Usuario = get_user_model()
-
-class RegistroUsuarioForm(UserCreationForm):
+class RegistroForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }

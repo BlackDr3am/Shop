@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Error de conexión{% endblock %}
+{% block content %}
+<div class="alert alert-danger mt-3">
+  <h4 class="alert-heading">Error de base de datos</h4>
+  <p>No pudimos conectarnos con el servidor de datos. Intenta de nuevo en unos minutos.</p>
+</div>
+<a href="/" class="btn btn-outline-primary">Volver al inicio</a>
+{% endblock %}
